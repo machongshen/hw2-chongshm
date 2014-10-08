@@ -4,18 +4,18 @@
   <frameworkImplementation>org.apache.uima.java</frameworkImplementation>
   <primitive>false</primitive>  
   <delegateAnalysisEngineSpecifiers>
-    <delegateAnalysisEngine key="Abner_NameAnnotator">
-      <import name=".Users.machongshen.git.hw2-chongshm.hw2-chongshm.src.main.resources.descriptors.Abner_NameAnnotator"/>
+    <delegateAnalysisEngine key="AbnerNameAnnotator">
+      <import name=".Users.machongshen.git.hw2-chongshm.hw2-chongshm.src.main.resources.descriptors.AbnerNameAnnotator"/>
     </delegateAnalysisEngine>
-    <delegateAnalysisEngine key="RunChunker_NameAnnotator">
-      <import name=".Users.machongshen.git.hw2-chongshm.hw2-chongshm.src.main.resources.descriptors.RunChunker_NameAnnotator"/>
+    <delegateAnalysisEngine key="LingpipeAnnotator">
+      <import name=".Users.machongshen.git.hw2-chongshm.hw2-chongshm.src.main.resources.descriptors.LingpipeAnnotator"/>
     </delegateAnalysisEngine>
-    <delegateAnalysisEngine key="Confidence_Annotator">
-      <import name=".Users.machongshen.git.hw2-chongshm.hw2-chongshm.src.main.resources.descriptors.Confidence_Annotator"/>
+    <delegateAnalysisEngine key="ConfidenceAnnotator">
+      <import name=".Users.machongshen.git.hw2-chongshm.hw2-chongshm.src.main.resources.descriptors.ConfidenceAnnotator"/>
     </delegateAnalysisEngine>
   </delegateAnalysisEngineSpecifiers>
   <analysisEngineMetaData>
-    <name>aeDescriptor1</name>
+    <name>hw2-chongshm-aae</name>
     <description/>
     <version>1.0</version>
     <vendor/>
@@ -23,9 +23,9 @@
     <configurationParameterSettings/>
     <flowConstraints>
       <fixedFlow>
-        <node>Abner_NameAnnotator</node>
-        <node>RunChunker_NameAnnotator</node>
-        <node>Confidence_Annotator</node>
+        <node>AbnerNameAnnotator</node>
+        <node>LingpipeAnnotator</node>
+        <node>ConfidenceAnnotator</node>
       </fixedFlow>
     </flowConstraints>
     <fsIndexCollection/>

@@ -23,22 +23,22 @@
         </featureDescription>
       <featureDescription>
           <name>start</name>
-          <description/>
+          <description>Store the Gene name beginning point</description>
           <rangeTypeName>uima.cas.Integer</rangeTypeName>
         </featureDescription>
         <featureDescription>
           <name>end</name>
-          <description/>
+          <description>Store the Gene name ending point</description>
           <rangeTypeName>uima.cas.Integer</rangeTypeName>
         </featureDescription>
         <featureDescription>
           <name>Gene_Mark</name>
-          <description/>
+          <description>Store the Gene name information</description>
           <rangeTypeName>uima.cas.String</rangeTypeName>
         </featureDescription>
         <featureDescription>
           <name>Gene_Sign</name>
-          <description/>
+          <description>Store the Gene ID</description>
           <rangeTypeName>uima.cas.String</rangeTypeName>
         </featureDescription>
       </features>
@@ -107,22 +107,22 @@
       <features>
         <featureDescription>
           <name>Gene_Sign</name>
-          <description/>
+          <description>Store the Gene ID</description>
           <rangeTypeName>uima.cas.String</rangeTypeName>
         </featureDescription>
         <featureDescription>
           <name>Gene_Mark</name>
-          <description/>
+          <description>Store the Gene name information</description>
           <rangeTypeName>uima.cas.String</rangeTypeName>
         </featureDescription>
         <featureDescription>
           <name>start</name>
-          <description/>
+          <description>Store the Gene name beginning point</description>
           <rangeTypeName>uima.cas.Integer</rangeTypeName>
         </featureDescription>
         <featureDescription>
           <name>end</name>
-          <description/>
+          <description>Store the Gene name endding point</description>
           <rangeTypeName>uima.cas.Integer</rangeTypeName>
         </featureDescription>
       </features>

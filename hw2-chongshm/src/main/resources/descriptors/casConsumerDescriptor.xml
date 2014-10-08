@@ -10,13 +10,20 @@
     <vendor/>
     <configurationParameters>
       <configurationParameter>
-        <name>InputDirectory</name>
+        <name>OutputDirectory</name>
         <type>String</type>
         <multiValued>false</multiValued>
         <mandatory>true</mandatory>
       </configurationParameter>
     </configurationParameters>
-    <configurationParameterSettings/>
+    <configurationParameterSettings>
+      <nameValuePair>
+        <name>OutputDirectory</name>
+        <value>
+          <string>./src/main/resources/data/hw2-chongshm.out</string>
+        </value>
+      </nameValuePair>
+    </configurationParameterSettings>
     <typeSystemDescription>
       <imports>
         <import name="descriptors.deiis_types"/>

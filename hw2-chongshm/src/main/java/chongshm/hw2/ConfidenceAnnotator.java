@@ -19,31 +19,33 @@ import org.apache.uima.resource.ResourceProcessException;
 import edu.cmu.deiis.types.Annotation;
 import edu.cmu.deiis.types.Consumer;
 import edu.cmu.deiis.types.Token;
-import edu.cmu.hw2chongshm.consumers;
-import edu.cmu.hw2chongshm.types;
+//import edu.cmu.hw2chongshm.consumers;
+//import edu.cmu.hw2chongshm.types;
+
 /**
- * Description: Confidence_Annotator is responsible for comparing the results from the two previous annotators,
- *  the Lingpipe(RunChunker_Annotator) and Abner (Abner_Annotator). This annotator could choose the more 
- *  trustworthy results from the different annotators.   
+ * Description: Confidence_Annotator is responsible for comparing the results
+ * from the two previous annotators, the Lingpipe(RunChunker_Annotator) and
+ * Abner (Abner_Annotator). This annotator could choose the more trustworthy
+ * results from the different annotators.
+ * 
  * @author machongshen
  */
-public class Confidence_Annotator extends JCasAnnotator_ImplBase {
+public class ConfidenceAnnotator extends JCasAnnotator_ImplBase {
 	public static int a = 0;
 
 	public void process(JCas aJCas) throws AnalysisEngineProcessException {
 		// TODO Auto-generated method stub
 		/**
-		 *  
-		 *  @param  mapLingpipe
-		 *  Store the type information processed by Lingpipe.
-		 *  		mapAbner
-		 *  Store the type information processed by Abner.
-		 *  		mapcompare
-		 *  Store the input type as reference for the output type system(Consumer).
+		 * 
+		 * @param mapLingpipe
+		 *            Store the type information processed by Lingpipe. mapAbner
+		 *            Store the type information processed by Abner. mapcompare
+		 *            Store the input type as reference for the output type
+		 *            system(Consumer).
 		 * 
 		 */
-		FSIterator it = aJCas
-				.getAnnotationIndex(edu.cmu.deiis.types.Annotation.type).iterator();
+		FSIterator it = aJCas.getAnnotationIndex(
+				edu.cmu.deiis.types.Annotation.type).iterator();
 		Map<String, Annotation> mapLingpipe = new HashMap<String, Annotation>();
 		Map<String, Annotation> mapAbner = new HashMap<String, Annotation>();
 		Map<String, Double> mapcompare = new HashMap<String, Double>();
@@ -57,14 +59,15 @@ public class Confidence_Annotator extends JCasAnnotator_ImplBase {
 				mapAbner.put(start, annotation);
 
 		}
-		
+
 		Iterator lingpipe = mapLingpipe.entrySet().iterator();
 
 		while (lingpipe.hasNext()) {
 			Map.Entry<String, Annotation> entry = (Entry<String, Annotation>) lingpipe
 					.next();
 
-			if (!mapcompare.containsKey(entry.getValue().getGene_Mark())&&entry.getValue().getConfidence() >= 0.6
+			if (!mapcompare.containsKey(entry.getValue().getGene_Mark())
+					&& entry.getValue().getConfidence() >= 0.6
 					|| Match(entry.getKey(), mapAbner)) {
 				Consumer token = new Consumer(aJCas);
 				token.setStart(entry.getValue().getStart());
@@ -72,14 +75,17 @@ public class Confidence_Annotator extends JCasAnnotator_ImplBase {
 				token.setGene_Sign(entry.getValue().getGene_Sign());
 				token.setGene_Mark(entry.getValue().getGene_Mark());
 				token.addToIndexes();
-				mapcompare.put("|"+Integer.toString(entry.getValue().getStart()), 0.1d);
-				mapcompare.put(Integer.toString(entry.getValue().getEnd())+"|", 0.1d);
+				mapcompare.put(
+						"|" + Integer.toString(entry.getValue().getStart()),
+						0.1d);
+				mapcompare.put(Integer.toString(entry.getValue().getEnd())
+						+ "|", 0.1d);
 				mapcompare.put(entry.getValue().getGene_Mark(), 0.1d);
 			}
 		}
-		
+
 		Iterator abner = mapAbner.entrySet().iterator();
-		
+
 		while (abner.hasNext()) {
 			Map.Entry<String, Annotation> entry = (Entry<String, Annotation>) abner
 					.next();
@@ -94,17 +100,19 @@ public class Confidence_Annotator extends JCasAnnotator_ImplBase {
 				token.setGene_Sign(entry.getValue().getGene_Sign());
 				token.setGene_Mark(entry.getValue().getGene_Mark());
 				token.addToIndexes();
-				
+
 			}
 		}
-	
 
 	}
+
 	/**
-	   * Description: This function is used for matching the start point of the current gene tag. Thus, by using 
-	   * hashmap traversing method to match substring, we will remove some repeating data.
-	   * @author machongshen
-	   */
+	 * Description: This function is used for matching the start point of the
+	 * current gene tag. Thus, by using hashmap traversing method to match
+	 * substring, we will remove some repeating data.
+	 * 
+	 * @author machongshen
+	 */
 	public boolean Match(String key, Map<String, Annotation> map) {
 
 		Iterator it = map.entrySet().iterator();
@@ -117,7 +125,8 @@ public class Confidence_Annotator extends JCasAnnotator_ImplBase {
 		}
 		return false;
 	}
-	public void destory(){
+
+	public void destory() {
 		System.out.println(a);
 	}
 

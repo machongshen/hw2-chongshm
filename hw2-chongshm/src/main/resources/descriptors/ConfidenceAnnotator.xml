@@ -2,9 +2,9 @@
 
 <analysisEngineDescription xmlns="http://uima.apache.org/resourceSpecifier">
   <frameworkImplementation>org.apache.uima.java</frameworkImplementation>
-  <primitive>true</primitive>  <annotatorImplementationName>chongshm.hw2.Confidence_Annotator</annotatorImplementationName>
+  <primitive>true</primitive>  <annotatorImplementationName>chongshm.hw2.ConfidenceAnnotator</annotatorImplementationName>
   <analysisEngineMetaData>
-    <name>Confidence_Annotator</name>
+    <name>Confidence Annotator</name>
     <description/>
     <version>1.0</version>
     <vendor/>

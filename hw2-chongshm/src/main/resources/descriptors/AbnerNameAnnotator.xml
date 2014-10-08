@@ -3,11 +3,11 @@
 <analysisEngineDescription xmlns="http://uima.apache.org/resourceSpecifier">
   <frameworkImplementation>org.apache.uima.java</frameworkImplementation>
   <primitive>true</primitive>
-  <annotatorImplementationName>chongshm.hw2.Abner_Annotator</annotatorImplementationName>
+  <annotatorImplementationName>chongshm.hw2.AbnerAnnotator</annotatorImplementationName>
   <analysisEngineMetaData>
     <name>Abner Annotator</name>
     <description>Matches regular expressions in document text.</description>
-    <version/>
+    <version>1.5</version>
     <vendor/>
     <configurationParameters/>
     <configurationParameterSettings/>

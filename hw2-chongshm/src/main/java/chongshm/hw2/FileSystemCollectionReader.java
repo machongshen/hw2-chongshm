@@ -40,29 +40,25 @@ import org.apache.uima.util.FileUtils;
 import org.apache.uima.util.Progress;
 import org.apache.uima.util.ProgressImpl;
 
-import edu.cmu.hw2chongshm.types;
-
 /**
- * Description: A simple collection reader that reads documents from a directory in the
- * file system line by line. By using the BufferedReader function. I realized this
- * function. It can be configured with the following parameters:
- *
- *  		
+ * Description: A simple collection reader that reads documents from a directory
+ * in the file system line by line. By using the BufferedReader function. I
+ * realized this function. It can be configured with the following parameters:
+ * 
+ * 
  * @author machongshen
  * 
  * 
  */
-public class FileSystemCollectionReader_Line_By_Line extends
-		CollectionReader_ImplBase {
+public class FileSystemCollectionReader extends CollectionReader_ImplBase {
 	/**
-	 * Description:
-	 * Name of configuration parameter that must be set to the path of a
-	 * directory containing input files.
-	 *  @param PARAM_INPUTDIR
- *  		The path of input material
+	 * Description: Name of configuration parameter that must be set to the path
+	 * of a directory containing input files.
+	 * 
+	 * @param PARAM_INPUTDIR
+	 *            The path of input material
 	 */
 	public static final String PARAM_INPUTDIR = "InputDirectory";
-
 
 	private ArrayList<String> sentences;
 
@@ -70,36 +66,36 @@ public class FileSystemCollectionReader_Line_By_Line extends
 
 	/**
 	 * @see org.apache.uima.collection.CollectionReader_ImplBase#initialize()
-	 * Set the path of the input file.
+	 *      Set the path of the input file.
 	 */
 	public void initialize() throws ResourceInitializationException {
-		
+
 		String sentence = ((String) getConfigParameterValue(PARAM_INPUTDIR))
-				.trim() + "/sample.in";
+				.trim();
 		mCurrentIndex = 0;
 		try {
 			sentences = linereadfile(sentence);
 		} catch (Exception e) {
 		}
-		
+
 	}
 
 	/**
-	 * This method read the each lines of the input file in the directory, save the each 
-	 * sentences to a Arraylist.
-	 * @param 	sentences
-	 *  		Store the s
+	 * This method read the each lines of the input file in the directory, save
+	 * the each sentences to a Arraylist.
+	 * 
+	 * @param sentences
+	 *            Store the s
 	 * 
 	 */
 	public ArrayList<String> linereadfile(String sentence) throws Exception {
-		
+
 		String line = null;
 		sentences = new ArrayList<String>();
 		BufferedReader in = new BufferedReader(new FileReader(sentence));
-	
 
 		while ((line = in.readLine()) != null) {
-			
+
 			sentences.add(line);
 		}
 		in.close();
@@ -124,14 +120,12 @@ public class FileSystemCollectionReader_Line_By_Line extends
 			throw new CollectionException(e);
 		}
 		/**
-		* test
-		*/
-		String s =(String) sentences.get(0);
-		
-		
+		 * test
+		 */
+
 		String line = (String) sentences.get(mCurrentIndex++);
 		jcas.setDocumentText(line);
-		//System.out.println(line);
+		// System.out.println(line);
 	}
 
 	/**
