@@ -8,14 +8,14 @@ import java.util.HashMap;
 
 public class PerformanceEvaluator {
 	
-    public static int correct_num = 0;
+    public static int hit = 0;
     public static int answer_num = 0;
-    public int supposed_num = 0;
+    public int expected_ans = 0;
    // public String AnswerText = "";
-    private HashMap<String, Integer> dict;
+    private HashMap<String, Integer> dictionary;
     public void setAnswerText(String pathname) throws IOException
     { 
-      dict = new HashMap<String, Integer>();
+      dictionary = new HashMap<String, Integer>();
       File filename = new File(pathname);
       InputStreamReader reader = new InputStreamReader(new FileInputStream(filename)); 
       BufferedReader br = new BufferedReader(reader); 
@@ -28,8 +28,8 @@ public class PerformanceEvaluator {
          
           String tokens[] = line.split("\\|");
           //System.out.println(tokens[tokens.length - 1]);
-          dict.put(tokens[tokens.length - 1], 1);
-          supposed_num++;
+          dictionary.put(tokens[tokens.length - 1], 1);
+          expected_ans++;
       }
       br.close();
       reader.close();
@@ -37,18 +37,18 @@ public class PerformanceEvaluator {
     }
     public double getPrecision()
     {
-      return (double)correct_num / answer_num;
+      return (double)hit / answer_num;
     }
     public double getRecall()
     {
-      return (double)correct_num / supposed_num;
+      return (double)hit / expected_ans;
     }
-    public void judgeAnswer(String ans)
+    public void judgeAnswer(String answer)
     { 
-      if(ans == "") return;
-      if(dict.containsKey(ans))
+      if(answer == "") return;
+      if(dictionary.containsKey(answer))
       { //System.out.println("good");
-        correct_num++;
+        hit++;
       }
     }
     public void setAnswernum(int num)
@@ -64,11 +64,11 @@ public class PerformanceEvaluator {
     public void printReport()
     {
       System.out.println();
-      System.out.println("Correct Num:" + correct_num);
+      System.out.println("Total Hit Num:" + hit);
       System.out.println("Total Returned Answer:" + answer_num);
-      System.out.println("Supposed Answer Num:" + supposed_num);
+      System.out.println("Total Expected Answer Num:" + expected_ans);
       System.out.println("Precision:" + getPrecision());
       System.out.println("Recall:" + getRecall());
-      System.out.println("F-socre:" + getfScore());
+      System.out.println("F-Socre:" + getfScore());
     }
 } 

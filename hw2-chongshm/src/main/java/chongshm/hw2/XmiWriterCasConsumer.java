@@ -48,7 +48,7 @@ import org.xml.sax.SAXException;
 
 import edu.cmu.deiis.types.Consumer;
 
-/**
+/** Description:
  * A simple CAS consumer that writes the CAS to a output file.
  * <p>
  * This CAS Consumer takes one parameter:
@@ -59,11 +59,12 @@ import edu.cmu.deiis.types.Consumer;
  */
 public class XmiWriterCasConsumer extends CasConsumer_ImplBase {
 	/**
-	 * Descriptor: Name of configuration parameter that must be set to the path of a
+	 * Description: Name of configuration parameter that must be set to the path of a
 	 *             directory into which the output files will be written.
-	 * @author machongshen
+	 *
 	 * @param ARAM_INTPUTDIR represents the golden answer path.
 	 *  	  PARAM_OUTPUTDIR represents the output result path.
+	 * @author machongshen
 	 */
 
 	public static PerformanceEvaluator a = new PerformanceEvaluator();
@@ -72,7 +73,7 @@ public class XmiWriterCasConsumer extends CasConsumer_ImplBase {
 	public static final String PARAM_INTPUTDIR = "./src/main/resources/inputData/sample.out";
 	public static final String PARAM_OUTPUTDIR = "./src/main/resources/inputData/data_out/hw1-chongshm.out";
 
-	/**
+	/**Description:
 	 * For the initialize() function, we need to initialize the file, because we what to save the processed data.
 	 *  When we run again, we will make the file clean.
 	 *  @author machongshen
@@ -98,7 +99,7 @@ public class XmiWriterCasConsumer extends CasConsumer_ImplBase {
 		}
 	}
 
-	/**
+	/** Description:
 	 * @author machongshen 
 	 * Processes the CAS which was populated by the
 	 *         TextAnalysisEngines. <br>

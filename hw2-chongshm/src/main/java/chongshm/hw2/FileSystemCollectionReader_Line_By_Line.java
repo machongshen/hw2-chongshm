@@ -43,18 +43,23 @@ import org.apache.uima.util.ProgressImpl;
 import edu.cmu.hw2chongshm.types;
 
 /**
- * A simple collection reader that reads documents from a directory in the
- * filesystem lin by line. By using the BufferedReader function. I realized this
+ * Description: A simple collection reader that reads documents from a directory in the
+ * file system line by line. By using the BufferedReader function. I realized this
  * function. It can be configured with the following parameters:
- * 
+ *
+ *  		
+ * @author machongshen
  * 
  * 
  */
 public class FileSystemCollectionReader_Line_By_Line extends
 		CollectionReader_ImplBase {
 	/**
+	 * Description:
 	 * Name of configuration parameter that must be set to the path of a
 	 * directory containing input files.
+	 *  @param PARAM_INPUTDIR
+ *  		The path of input material
 	 */
 	public static final String PARAM_INPUTDIR = "InputDirectory";
 
@@ -65,7 +70,6 @@ public class FileSystemCollectionReader_Line_By_Line extends
 
 	/**
 	 * @see org.apache.uima.collection.CollectionReader_ImplBase#initialize()
-	 * 
 	 * Set the path of the input file.
 	 */
 	public void initialize() throws ResourceInitializationException {
@@ -83,7 +87,9 @@ public class FileSystemCollectionReader_Line_By_Line extends
 	/**
 	 * This method read the each lines of the input file in the directory, save the each 
 	 * sentences to a Arraylist.
-	 * @param dir
+	 * @param 	sentences
+	 *  		Store the s
+	 * 
 	 */
 	public ArrayList<String> linereadfile(String sentence) throws Exception {
 		

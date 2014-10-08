@@ -26,19 +26,21 @@ import com.aliasi.util.Strings;
 
 import edu.cmu.deiis.types.Annotation;
 import edu.cmu.hw2chongshm.types;
-/**@author machongshen
+/**Description:
  * This annotator that discovers Gene Tag and Name in the file by using the Lingpipe API.
- * This code first creates the chunker, then analyzes each of the arguments using the 
+ * This code first creates the confidence chunker, then analyzes each of the arguments using the 
  * chunker. It does this by pulling out the chunking, then pulling the set of chunks out 
- * of the chunking, then save each of these chunks. Then set them go to the 
+ * of the chunking, then save each of these chunks. Then, we will get the results and its confidence. That's all
+ * we need.
  * 
+ * @author machongshen
  */
 
 public class RunChunker_Annotator extends JCasAnnotator_ImplBase {
 	static ConfidenceChunker chunker = null;
 	public void initialize( UimaContext context ){
 		File modelFile = new File(
-				"./src/main/resources/inputData/output123");
+				"./src/main/resources/inputData/biodictionary");
 		try {
 			chunker = (ConfidenceChunker) AbstractExternalizable.readObject(modelFile);
 		} catch (IOException e) {
@@ -49,14 +51,7 @@ public class RunChunker_Annotator extends JCasAnnotator_ImplBase {
 			e.printStackTrace();
 		}
 	}
-	/**@author machongshen
-	 * This annotator that discovers Gene Tag and Name in the file by using the Lingpipe API.
-	 * This code first creates the chunker, then analyzes each of the arguments using the 
-	 * chunker. It does this by pulling out the chunking, then pulling the set of chunks out 
-	 * of the chunking, then save each of these chunks. Then set them go to the 
-	 * 
-	 * @return void no need to return.
-	 */
+	
 	@Override
 
 	public void process(JCas aJCas) throws AnalysisEngineProcessException {
@@ -64,17 +59,18 @@ public class RunChunker_Annotator extends JCasAnnotator_ImplBase {
 		// TODO Auto-generated method stub
 		// JCas jcas = null;
 
-	/**  @see file "ne-en-bio-genetag.hmmchunker" from <url>http://alias-i.com/</url>
+	/**@see file "ne-en-bio-genetag.hmmchunker" from <url>http://alias-i.com/</url>
 	 * Like Other models, ne-en-bio-genetag.hmmchunker is labeled by task (ne for named-entity recognition), 
-	 * language (en for English), genre (bio for biology) and corpus (genetag for the GENETAG 
-	 * corpus
+	 * language (en for English), genre (bio for biology) and corpus (genetag for the GENETAG corpus), but we 
+	 * use another dictionary which is called "biodictionary". This dictionary was trained by using the additional 
+	 * data in <url>http://alias-i.com/</url>. Thus, it has broader scope. 
+	 * @author machongshen
 	 * */
 		
 		String docText = aJCas.getDocumentText();
 		String[] k = docText.split(" ", 2);
 		char [] abc = k[1].toCharArray();
-		//Chunking chunking = chunker.chunk(k[1]);
-		//Set<Chunk> chunkSet = chunking.chunkSet();
+		
 		Iterator<Chunk> it = chunker.nBestChunks(abc,0,abc.length,40);
 		while (it.hasNext()) {
 			Annotation types = new Annotation(aJCas);

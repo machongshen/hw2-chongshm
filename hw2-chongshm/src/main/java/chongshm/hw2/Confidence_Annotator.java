@@ -26,15 +26,22 @@ import edu.cmu.hw2chongshm.types;
  *  the Lingpipe(RunChunker_Annotator) and Abner (Abner_Annotator). This annotator could choose the more 
  *  trustworthy results from the different annotators.   
  * @author machongshen
- * 
- * 
  */
 public class Confidence_Annotator extends JCasAnnotator_ImplBase {
+	public static int a = 0;
 
-	@Override
 	public void process(JCas aJCas) throws AnalysisEngineProcessException {
 		// TODO Auto-generated method stub
-
+		/**
+		 *  
+		 *  @param  mapLingpipe
+		 *  Store the type information processed by Lingpipe.
+		 *  		mapAbner
+		 *  Store the type information processed by Abner.
+		 *  		mapcompare
+		 *  Store the input type as reference for the output type system(Consumer).
+		 * 
+		 */
 		FSIterator it = aJCas
 				.getAnnotationIndex(edu.cmu.deiis.types.Annotation.type).iterator();
 		Map<String, Annotation> mapLingpipe = new HashMap<String, Annotation>();
@@ -67,7 +74,6 @@ public class Confidence_Annotator extends JCasAnnotator_ImplBase {
 				token.addToIndexes();
 				mapcompare.put("|"+Integer.toString(entry.getValue().getStart()), 0.1d);
 				mapcompare.put(Integer.toString(entry.getValue().getEnd())+"|", 0.1d);
-			
 				mapcompare.put(entry.getValue().getGene_Mark(), 0.1d);
 			}
 		}
@@ -88,7 +94,7 @@ public class Confidence_Annotator extends JCasAnnotator_ImplBase {
 				token.setGene_Sign(entry.getValue().getGene_Sign());
 				token.setGene_Mark(entry.getValue().getGene_Mark());
 				token.addToIndexes();
-				//System.out.println("good");
+				
 			}
 		}
 	
@@ -97,7 +103,6 @@ public class Confidence_Annotator extends JCasAnnotator_ImplBase {
 	/**
 	   * Description: This function is used for matching the start point of the current gene tag. Thus, by using 
 	   * hashmap traversing method to match substring, we will remove some repeating data.
-	   * 
 	   * @author machongshen
 	   */
 	public boolean Match(String key, Map<String, Annotation> map) {
@@ -111,6 +116,9 @@ public class Confidence_Annotator extends JCasAnnotator_ImplBase {
 			}
 		}
 		return false;
+	}
+	public void destory(){
+		System.out.println(a);
 	}
 
 }
