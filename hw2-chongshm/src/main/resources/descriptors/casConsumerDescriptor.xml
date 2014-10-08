@@ -20,7 +20,7 @@
       <nameValuePair>
         <name>OutputDirectory</name>
         <value>
-          <string>./src/main/resources/data/hw2-chongshm.out</string>
+          <string>hw2-chongshm.out</string>
         </value>
       </nameValuePair>
     </configurationParameterSettings>

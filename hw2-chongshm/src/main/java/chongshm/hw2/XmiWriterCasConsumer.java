@@ -45,6 +45,7 @@ import org.apache.uima.resource.ResourceInitializationException;
 import org.apache.uima.resource.ResourceProcessException;
 import org.apache.uima.util.XMLSerializer;
 import org.xml.sax.SAXException;
+
 import chongshm.hw2.*;
 import edu.cmu.deiis.types.Consumer;
 
@@ -68,7 +69,6 @@ public class XmiWriterCasConsumer extends CasConsumer_ImplBase {
 	 * @author machongshen
 	 */
 	public static Evaluator a = new Evaluator();
-
 	public static int answercount = 0;
 	public int anothercount = 0;
 	public static final String PARAM_INTPUTDIR = "./src/main/resources/inputData/sample.out";
@@ -81,8 +81,9 @@ public class XmiWriterCasConsumer extends CasConsumer_ImplBase {
 	 * 
 	 */
 	public void initialize() throws ResourceInitializationException {
-
-		File f = new File(PARAM_OUTPUTDIR);
+		String sentence = ((String) getConfigParameterValue(PARAM_OUTPUTDIR))
+				.trim();
+		File f = new File(sentence);
 		FileWriter fw;
 		try {
 			fw = new FileWriter(f);
@@ -129,9 +130,9 @@ public class XmiWriterCasConsumer extends CasConsumer_ImplBase {
 		String[] k = docText.split(" ", 2);
 
 		try {
-
-			FileWriter fw = new FileWriter(PARAM_OUTPUTDIR, true);
-
+			String sentence = ((String) getConfigParameterValue(PARAM_OUTPUTDIR))
+					.trim();
+			FileWriter fw = new FileWriter(sentence, true);
 			BufferedWriter output = new BufferedWriter(fw);
 			FSIterator it = jcas.getAnnotationIndex(
 					edu.cmu.deiis.types.Consumer.type).iterator();
@@ -179,7 +180,6 @@ public class XmiWriterCasConsumer extends CasConsumer_ImplBase {
 
 				output.append(Gene_Sign + "|" + start + " " + end + "|"
 						+ Gene_Mark);
-				// System.out.println(test);
 				answercount++;
 				a.setAnswernum(answercount);
 				a.judgeAnswer(test);
