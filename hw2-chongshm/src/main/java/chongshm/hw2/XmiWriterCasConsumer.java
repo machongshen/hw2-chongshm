@@ -192,7 +192,7 @@ public class XmiWriterCasConsumer extends CasConsumer_ImplBase {
 
 			// if (anothercount==((jcas.size()/200)))
 			// {
-			a.printReport();
+			//a.printReport();
 			// }
 
 		} catch (IOException e) {

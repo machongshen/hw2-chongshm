@@ -67,7 +67,7 @@ public class ConfidenceAnnotator extends JCasAnnotator_ImplBase {
 					.next();
 
 			if (!mapcompare.containsKey(entry.getValue().getGene_Mark())
-					&& entry.getValue().getConfidence() >= 0.6
+					&& entry.getValue().getConfidence() >= 0.7
 					|| Match(entry.getKey(), mapAbner)) {
 				Consumer token = new Consumer(aJCas);
 				token.setStart(entry.getValue().getStart());

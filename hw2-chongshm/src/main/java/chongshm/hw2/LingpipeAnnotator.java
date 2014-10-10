@@ -39,13 +39,13 @@ import edu.cmu.deiis.types.Annotation;
 
 public class LingpipeAnnotator extends JCasAnnotator_ImplBase {
 	static ConfidenceChunker chunker = null;
-
+	public static final String PARAM_OUTPUTDIR = "GenesFilename";
 	public void initialize(UimaContext context) {
 		File modelFile = new File(
-				"./src/main/resources/inputData/biodictionary");
+				PARAM_OUTPUTDIR);
 		try {
 			chunker = (ConfidenceChunker) AbstractExternalizable
-					.readObject(modelFile);
+					.readResourceObject(LingpipeAnnotator.class, (String) context.getConfigParameterValue("GenesFilename"));
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
